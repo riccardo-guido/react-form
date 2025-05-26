@@ -8,9 +8,13 @@ export default function Main() {
     e.preventDefault();
 
     const newArticleList = [...articleslist, newArticole];
-    setArticleList(newArticleList)
-     
+    setArticleList(newArticleList);
+    setNewArticle("");     
+  };
 
+  const handleDeleteArticle = () => {
+    const newArticleList = articleslist.filter((article, index) => index != 0);
+    setArticleList(newArticleList);
   }
   return(
     <main>
@@ -26,11 +30,14 @@ export default function Main() {
         </form>
 
 
-
         <ul>
             {articleslist.map((article, index) => (
-              <li key={index}> {article}</li>
+              <li key={index} onClick={() => handleDeleteArticle()}  > {article}
+              <button className="ms-3">Elimina</button>
+              </li>
+              
             ))}
+            
         </ul>
       </div>
     </main>
